@@ -49,7 +49,6 @@ const EditModal = () => {
             }
             
             const days = await Post('/api/get-days', {})
-            console.log(JSON.parse(days.data))
             const newlist = JSON.parse(days.data).data
             dispatch({
               type: 'UPDATE_SHIFT',
@@ -59,7 +58,6 @@ const EditModal = () => {
               type: 'UPDATE_SHIFT',
               shifts: newlist
             })
-            //  console.log(newlist)
             dispatch({
               type: 'EDIT_MODE',
               editShiftMode: false,

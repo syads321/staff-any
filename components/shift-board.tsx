@@ -9,7 +9,6 @@ const Shifts = () => {
     )
 }
 export default function ShiftBoard() {
-    console.log('shift board')
     const { dayshift } = Shifts()
     const shiftlist = dayshift.map((e: any, key: number) => {
         return <DayShiftCard key={key.toString()} id={e.id} shifts={e.shifts} date={e.day} />

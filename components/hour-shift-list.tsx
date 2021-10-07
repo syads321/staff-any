@@ -7,15 +7,7 @@ import { Button, List, Icon, Confirm } from 'semantic-ui-react'
 import moment from 'moment';
 import refreshShifts from '../helpers/refreshShifts'
 import Post from '../helpers/posts';
-// import { useSelector, shallowEqual } from 'react-redux'
-// const Shifts = () => {
-//     return useSelector(
-//         (state) => ({
-//             shifts: state.shifts
-//         }),
-//         shallowEqual
-//     )
-// }
+
 export default function HourShiftList(props: { id: number, shifts: Array<HourShift>, date: string }) {
     let list: Array<HourShift> = [];
     let hours: Array<Hour> = [];
@@ -25,17 +17,12 @@ export default function HourShiftList(props: { id: number, shifts: Array<HourShi
             hour: i
         })
     }
-    list = [...list, { day: '22-09-2021', starthour: '1000', endhour: '1230', title: 'first shift' }]
     const [hourslist] = useState(hours);
     const multiplier = 50;
     const [shifts] = useState(props.shifts)
     const dispatch = useDispatch()
     const [deleteConfirm, setDeletConfirm] = useState(false)
 
-    // const filterShift = (id: number, shifts: any) => {
-    //     console.log(shifts)
-    //     return shifts.find((e: any) => { return e.id === id }).shifts
-    // }
     const deleteDay = async (id: number, day: string) => {
         try {
             await Post('/api/delete-day',
@@ -43,7 +30,6 @@ export default function HourShiftList(props: { id: number, shifts: Array<HourShi
                     id: id,
                     day: day
                 })
-            // setDeletConfirm(false)
             const shifts = await refreshShifts()
             dispatch({
                 type: 'UPDATE_SHIFT',
@@ -54,7 +40,6 @@ export default function HourShiftList(props: { id: number, shifts: Array<HourShi
                 shifts: shifts
             })
             setDeletConfirm(false)
-            //  console.log(newlist)
         } catch (e) {
 
         }
@@ -86,7 +71,7 @@ export default function HourShiftList(props: { id: number, shifts: Array<HourShi
         </div>
         <div className="wrapper">
             {shifts.map((elm: any, key: number) => {
-                return <ShiftItem key={key.toString()} title={elm.title} starthour={elm.starthour} endhour={elm.endhour} date={props.date} multiplier={multiplier} />
+                return <ShiftItem key={key.toString()} title={elm.title} starthour={elm.starthour} endhour={elm.endhour} date={props.date} multiplier={multiplier} id={elm.id} />
             })}
             <List divided verticalAlign='middle'>
                 {hourslist.map((elm, key) => {

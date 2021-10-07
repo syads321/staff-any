@@ -45,7 +45,6 @@ const AddDayModal = () => {
               type: 'UPDATE_SHIFT',
               shifts: shifts
             })
-            //  console.log(newlist)
             dispatch({
               type: 'ADD_DAY',
               addDayMode: false,

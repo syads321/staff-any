@@ -32,7 +32,7 @@ const EditShiftModal = () => {
                 <Form ref={formRef}
                     onSubmit={async (e: SyntheticEvent) => {
                         e.preventDefault();
-                        if (shiftaddmode) {
+                        if (shiftaddmode === true) {
                             await Post('/api/add-shift',
                                 {
                                     day: item.date,
@@ -60,7 +60,6 @@ const EditShiftModal = () => {
                             type: 'UPDATE_SHIFT',
                             shifts: newlist
                         })
-                        //  console.log(newlist)
                         dispatch({
                             type: 'EDIT_MODE',
                             editShiftMode: false,

@@ -14,7 +14,7 @@ export default async function handler(
 
     try {
         const query = `SELECT i.id as id, i."day" as "day" ,
-        json_agg(json_build_object('starthour', q.starthour, 'endhour', q.endhour, 'title', q.title)) as shifts
+        json_agg(json_build_object('id', q.id ,'starthour', q.starthour, 'endhour', q.endhour, 'title', q.title)) as shifts
  FROM day_shift i LEFT JOIN
       shift q
       ON q."day" = i."day"
